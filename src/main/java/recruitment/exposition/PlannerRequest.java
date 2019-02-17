@@ -1,27 +1,24 @@
 package recruitment.exposition;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
 public class PlannerRequest {
 
-    LocalDateTime date;
+    private String interviewDay;
 
-    UUID candidateId;
+    private String candidateId;
 
-    public LocalDateTime getDate() {
-        return date;
+    public String getInterviewDay() {
+        return interviewDay;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setInterviewDay(String interviewDay) {
+        this.interviewDay = interviewDay;
     }
 
-    public UUID getCandidateId() {
+    public String getCandidateId() {
         return candidateId;
     }
 
-    public void setCandidateId(UUID candidateId) {
+    public void setCandidateId(String candidateId) {
         this.candidateId = candidateId;
     }
 }
