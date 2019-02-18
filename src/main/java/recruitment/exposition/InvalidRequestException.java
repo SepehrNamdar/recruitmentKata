@@ -1,7 +1,7 @@
 package recruitment.exposition;
 
-public class InvalidRequestException extends RuntimeException {
-    public InvalidRequestException(String message) {
+class InvalidRequestException extends RuntimeException {
+    InvalidRequestException(String message) {
         super(message);
     }
 }

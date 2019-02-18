@@ -3,10 +3,9 @@ package recruitment.exposition;
 public class PlannerRequest {
 
     private String interviewDay;
-
     private String candidateId;
 
-    public String getInterviewDay() {
+    String getInterviewDay() {
         return interviewDay;
     }
 
@@ -14,7 +13,7 @@ public class PlannerRequest {
         this.interviewDay = interviewDay;
     }
 
-    public String getCandidateId() {
+    String getCandidateId() {
         return candidateId;
     }
 

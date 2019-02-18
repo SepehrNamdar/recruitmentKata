@@ -3,9 +3,7 @@ package recruitment.exposition;
 public class PlannerResponse {
 
     private String recruiter;
-
     private String candidate;
-
     private String date;
 
     public String getRecruiter() {

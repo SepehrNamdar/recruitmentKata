@@ -6,4 +6,5 @@ import recruitment.exposition.PlannerResponse;
 public interface RecruitmentPlanner {
 
     PlannerResponse plan(PlannerRequest request);
+
 }

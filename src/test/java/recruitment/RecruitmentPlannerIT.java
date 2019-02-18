@@ -5,45 +5,35 @@ import org.junit.jupiter.api.Test;
 import recruitment.exposition.PlannerRequest;
 import recruitment.exposition.PlannerResponse;
 import recruitment.exposition.RecruitmentPlannerImpl;
+import recruitment.use_case.PlanInterview;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RecruitmentPlannerIT {
+class RecruitmentPlannerIT {
 
-    private static final LocalDateTime TODAY = DateUtils.TODAY;
-    private static final String TODAY_FORMATTED = TODAY.format(DateUtils.FORMATTER);
     private static final String RECRUITER = "Sepehr NAMDAR";
     private static final String CANDIDATE = "Ali DUPONT";
+    private static final String TODAY = DateUtils.TODAY;
+    private static final String CANDIDATE_ID = String.valueOf(UUID.randomUUID());
 
     @Test
-    public void should_plan_an_interview() {
-        RecruitmentPlanner planner = new RecruitmentPlannerImpl();
+    void should_plan_an_interview() {
+        RecruitmentPlanner planner = new RecruitmentPlannerImpl(new PlanInterview());
         PlannerRequest request = createPlannerRequest();
 
         PlannerResponse response = planner.plan(request);
 
         assertThat(response.getRecruiter()).isEqualTo(RECRUITER);
         assertThat(response.getCandidate()).isEqualTo(CANDIDATE);
-        assertThat(response.getDate()).isEqualTo(TODAY_FORMATTED);
+        assertThat(response.getDate()).isEqualTo(TODAY);
     }
 
     private PlannerRequest createPlannerRequest() {
-        PlannerRequest request = newRequest();
-        request.setInterviewDay(String.valueOf(TODAY_FORMATTED));
-        request.setCandidateId(String.valueOf(UUID.randomUUID()));
-        return request;
-    }
-
-    private PlannerRequest newRequest() {
         PlannerRequest request = new PlannerRequest();
-
-        request.setInterviewDay(String.valueOf(TODAY));
-        request.setCandidateId(String.valueOf(UUID.randomUUID()));
-
+        request.setInterviewDay(TODAY);
+        request.setCandidateId(CANDIDATE_ID);
         return request;
     }
-
 }
