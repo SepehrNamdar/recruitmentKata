@@ -7,6 +7,7 @@ import recruitment.exposition.PlannerResponse;
 import recruitment.exposition.RecruitmentPlannerImpl;
 import recruitment.infra.CandidateRepositoryImpl;
 import recruitment.use_case.PlanInterview;
+import recruitment.use_case.RecruitersReferential;
 
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ class RecruitmentPlannerIT {
     @Test
     void should_plan_an_interview() {
         RecruitmentPlanner planner = new RecruitmentPlannerImpl(
-                new PlanInterview(new CandidateRepositoryImpl()));
+                new PlanInterview(new CandidateRepositoryImpl(), new RecruitersReferentialImpl()));
         PlannerRequest request = createPlannerRequest();
 
         PlannerResponse response = planner.plan(request);
