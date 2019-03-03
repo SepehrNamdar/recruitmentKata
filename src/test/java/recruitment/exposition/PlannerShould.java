@@ -64,7 +64,7 @@ class PlannerShould {
     }
 
     @Test
-    void call_plan_interview_use_case() {
+    void cal_l_plan_interview_usecase() {
         interviewRequest.setCandidateId(CANDIDATE_ID);
         interviewRequest.setInterviewDay(TODAY);
 

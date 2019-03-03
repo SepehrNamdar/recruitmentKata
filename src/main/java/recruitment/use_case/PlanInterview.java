@@ -1,7 +1,14 @@
 package recruitment.use_case;
 
 public class PlanInterview {
-    public void plan() {
 
+    private CandidateRepository candidateRepository;
+
+    public PlanInterview(CandidateRepository candidateRepository) {
+        this.candidateRepository = candidateRepository;
+    }
+
+    public void plan() {
+        candidateRepository.getCandidateById();
     }
 }
