@@ -13,7 +13,7 @@ public class PlanInterview {
     }
 
     public void plan(PlannerRequest request) {
-        candidateRepository.getCandidateById();
+        candidateRepository.getCandidateById(request.getCandidateId());
         recruitersReferential.getRecruitersOfTheMonth();
     }
 }

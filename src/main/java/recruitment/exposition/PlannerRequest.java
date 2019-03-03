@@ -5,7 +5,7 @@ public class PlannerRequest {
     private String interviewDay;
     private String candidateId;
 
-    String getInterviewDay() {
+    public String getInterviewDay() {
         return interviewDay;
     }
 
@@ -13,7 +13,7 @@ public class PlannerRequest {
         this.interviewDay = interviewDay;
     }
 
-    String getCandidateId() {
+    public String getCandidateId() {
         return candidateId;
     }
 

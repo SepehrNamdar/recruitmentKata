@@ -1,5 +1,5 @@
 package recruitment.use_case;
 
 public interface CandidateRepository {
-    void getCandidateById();
+    void getCandidateById(String candidateId);
 }

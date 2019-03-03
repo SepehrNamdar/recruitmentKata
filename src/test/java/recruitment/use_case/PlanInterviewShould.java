@@ -26,7 +26,7 @@ class PlanInterviewShould {
 
         planInterview.plan(request);
 
-        verify(candidateRepository).getCandidateById();
+        verify(candidateRepository).getCandidateById(request.getCandidateId());
     }
 
     @Test
