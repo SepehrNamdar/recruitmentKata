@@ -1,6 +1,7 @@
 package recruitment.use_case;
 
 import recruitment.exposition.PlannerRequest;
+import recruitment.model.Interview;
 
 public class PlanInterview {
 
@@ -12,8 +13,10 @@ public class PlanInterview {
         this.recruitersReferential = recruitersReferential;
     }
 
-    public void plan(PlannerRequest request) {
+    public void plan(PlannerRequest request, Interview interview) {
         candidateRepository.getCandidateById(request.getCandidateId());
         recruitersReferential.getRecruitersOfTheMonth();
+
+        interview.plan();
     }
 }

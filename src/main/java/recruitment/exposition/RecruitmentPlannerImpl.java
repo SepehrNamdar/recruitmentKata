@@ -4,6 +4,7 @@ import common.DateUtils;
 import common.ExceptionMessages;
 import common.StringUtils;
 import recruitment.RecruitmentPlanner;
+import recruitment.model.Interview;
 import recruitment.use_case.PlanInterview;
 
 import java.time.LocalDate;
@@ -12,9 +13,11 @@ import java.time.format.DateTimeParseException;
 public class RecruitmentPlannerImpl implements RecruitmentPlanner {
 
     private PlanInterview planInterview;
+    private Interview interview;
 
-    public RecruitmentPlannerImpl(PlanInterview planInterview) {
+    public RecruitmentPlannerImpl(PlanInterview planInterview, Interview interview) {
         this.planInterview = planInterview;
+        this.interview = interview;
     }
 
     @Override
@@ -22,7 +25,7 @@ public class RecruitmentPlannerImpl implements RecruitmentPlanner {
         validateRequestParams(interviewRequest);
         validateInterviewDateFormat(interviewRequest);
 
-        planInterview.plan(interviewRequest);
+        planInterview.plan(interviewRequest, interview);
 
         return new PlannerResponse();
     }

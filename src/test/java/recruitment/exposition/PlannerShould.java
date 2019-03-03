@@ -4,6 +4,7 @@ import common.DateUtils;
 import common.ExceptionMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import recruitment.model.Interview;
 import recruitment.use_case.PlanInterview;
 
 import java.util.UUID;
@@ -20,11 +21,13 @@ class PlannerShould {
     private PlanInterview planInterview;
     private RecruitmentPlannerImpl planner;
     private PlannerRequest interviewRequest;
+    private Interview interview;
 
     @BeforeEach
     void init() {
         planInterview = mock(PlanInterview.class);
-        planner = new RecruitmentPlannerImpl(planInterview);
+        interview = new Interview();
+        planner = new RecruitmentPlannerImpl(planInterview, interview);
         interviewRequest = new PlannerRequest();
     }
 
@@ -70,6 +73,6 @@ class PlannerShould {
 
         planner.plan(interviewRequest);
 
-        verify(planInterview).plan(interviewRequest);
+        verify(planInterview).plan(interviewRequest, interview);
     }
 }
