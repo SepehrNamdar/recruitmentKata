@@ -12,18 +12,18 @@ class PlanInterviewShould {
     private CandidateRepository candidateRepository;
     private RecruitersReferential recruitersReferential;
     private PlannerRequest request;
+    private PlanInterview planInterview;
 
     @BeforeEach
     void init() {
         candidateRepository = mock(CandidateRepository.class);
         recruitersReferential = mock(RecruitersReferential.class);
         request = new PlannerRequest();
+        planInterview = new PlanInterview(candidateRepository, recruitersReferential);
     }
 
     @Test
     void call_candidate_repository_to_find_candidate_by_candidate_id() {
-        PlanInterview planInterview = new PlanInterview(candidateRepository, recruitersReferential);
-
         planInterview.plan(request);
 
         verify(candidateRepository).getCandidateById(request.getCandidateId());
@@ -31,8 +31,6 @@ class PlanInterviewShould {
 
     @Test
     void call_recruiter_referential_to_find_recruiters_list() {
-        PlanInterview planInterview = new PlanInterview(candidateRepository, recruitersReferential);
-
         planInterview.plan(request);
 
         verify(recruitersReferential).getRecruitersOfTheMonth();
