@@ -1,5 +1,7 @@
 package recruitment.use_case;
 
+import recruitment.exposition.PlannerRequest;
+
 public class PlanInterview {
 
     private CandidateRepository candidateRepository;
@@ -10,7 +12,7 @@ public class PlanInterview {
         this.recruitersReferential = recruitersReferential;
     }
 
-    public void plan() {
+    public void plan(PlannerRequest request) {
         candidateRepository.getCandidateById();
         recruitersReferential.getRecruitersOfTheMonth();
     }

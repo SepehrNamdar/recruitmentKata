@@ -22,7 +22,7 @@ public class RecruitmentPlannerImpl implements RecruitmentPlanner {
         validateRequestParams(interviewRequest);
         validateInterviewDateFormat(interviewRequest);
 
-        planInterview.plan();
+        planInterview.plan(interviewRequest);
 
         return new PlannerResponse();
     }

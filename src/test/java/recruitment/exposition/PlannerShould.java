@@ -64,12 +64,12 @@ class PlannerShould {
     }
 
     @Test
-    void cal_l_plan_interview_usecase() {
+    void call_plan_interview_use_case() {
         interviewRequest.setCandidateId(CANDIDATE_ID);
         interviewRequest.setInterviewDay(TODAY);
 
         planner.plan(interviewRequest);
 
-        verify(planInterview).plan();
+        verify(planInterview).plan(interviewRequest);
     }
 }
