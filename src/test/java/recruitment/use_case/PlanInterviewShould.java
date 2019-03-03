@@ -15,15 +15,17 @@ class PlanInterviewShould {
     private PlannerRequest request;
     private PlanInterview planInterview;
     private Interview interview;
+    private InterviewRepository interviewrepository;
 
     @BeforeEach
     void init() {
         candidateRepository = mock(CandidateRepository.class);
         recruitersReferential = mock(RecruitersReferential.class);
         interview = mock(Interview.class);
+        interviewrepository = mock(InterviewRepository.class);
 
         request = new PlannerRequest();
-        planInterview = new PlanInterview(candidateRepository, recruitersReferential);
+        planInterview = new PlanInterview(candidateRepository, recruitersReferential, interviewrepository);
     }
 
     @Test
@@ -45,5 +47,12 @@ class PlanInterviewShould {
         planInterview.plan(request, interview);
 
         verify(interview).plan();
+    }
+
+    @Test
+    void call_interview_repository_to_add_new_planified_interview() {
+        planInterview.plan(request, interview);
+
+        verify(interviewrepository).add(interview);
     }
 }
