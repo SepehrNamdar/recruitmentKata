@@ -1,7 +1,14 @@
 package recruitment.model;
 
 public class Interview {
-    public void plan() {
 
+    private String status = "unscheduled";
+
+    public void plan() {
+        status  = "scheduled";
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

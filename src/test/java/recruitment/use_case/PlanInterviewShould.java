@@ -1,11 +1,13 @@
 package recruitment.use_case;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import recruitment.exposition.PlannerRequest;
 import recruitment.model.Interview;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 class PlanInterviewShould {
@@ -21,7 +23,7 @@ class PlanInterviewShould {
     void init() {
         candidateRepository = mock(CandidateRepository.class);
         recruitersReferential = mock(RecruitersReferential.class);
-        interview = mock(Interview.class);
+        interview = spy(new Interview());
         interviewrepository = mock(InterviewRepository.class);
 
         request = new PlannerRequest();
@@ -50,9 +52,16 @@ class PlanInterviewShould {
     }
 
     @Test
-    void call_interview_repository_to_add_new_planified_interview() {
+    void call_interview_repository_to_add_new_interview() {
         planInterview.plan(request, interview);
 
         verify(interviewrepository).add(interview);
+    }
+
+    @Test
+    void return_a_scheduled_interview_when_interview_planned() {
+        interview.plan();
+
+        Assertions.assertThat(interview.getStatus()).isEqualTo("scheduled");
     }
 }
