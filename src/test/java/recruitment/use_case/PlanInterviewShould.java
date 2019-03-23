@@ -60,7 +60,7 @@ class PlanInterviewShould {
 
     @Test
     void return_a_scheduled_interview_when_interview_planned() {
-        interview.plan();
+        planInterview.plan(request, interview);
 
         Assertions.assertThat(interview.getStatus()).isEqualTo("scheduled");
     }
