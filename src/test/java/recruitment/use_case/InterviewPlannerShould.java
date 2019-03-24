@@ -47,6 +47,9 @@ class InterviewPlannerShould {
         RecruiterData thomas = new RecruiterData();
         thomas.setFirstName("Thomas");
         thomas.setLastName("DUPONT");
+        ArrayList<LocalDateTime> availabilities = new ArrayList<>();
+        availabilities.add(DateUtils.TODAY);
+        thomas.setAvailabilities(availabilities);
         recruiters.add(thomas);
         when(recruitersReferential.findCurrentMonthRecruiters()).thenReturn(recruiters);
         return recruiters;

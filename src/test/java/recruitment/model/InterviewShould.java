@@ -27,7 +27,7 @@ class InterviewShould {
     void throw_an_exception_when_any_available_recruiter_in_this_month() {
         Interview interview = new Interview();
 
-        assertThatExceptionOfType(AnyRecruiterAvilableException.class)
+        assertThatExceptionOfType(AnyRecruiterAvailableException.class)
                 .isThrownBy(() -> {
                     interview.plan(DateUtils.TODAY, new CandidateData(), new ArrayList<>());
                 });
@@ -36,6 +36,32 @@ class InterviewShould {
     @Test
     void throw_an_exception_when_any_available_recruiter_for_requested_date() {
         Interview interview = new Interview();
+
+        assertThatExceptionOfType(AnyRecruiterAvailableException.class)
+                .isThrownBy(() -> {
+                    interview.plan(DateUtils.TODAY, new CandidateData(), getUnavailableRecruiters());
+                });
+    }
+
+    private List<RecruiterData> getUnavailableRecruiters() {
+        ArrayList<RecruiterData> recruiters = new ArrayList<>();
+
+        recruiters.add(anUnavailableRecruiter());
+
+        return recruiters;
+    }
+
+    private RecruiterData anUnavailableRecruiter() {
+        RecruiterData availableRecruiter = new RecruiterData();
+
+        List<LocalDateTime> availabilities = new ArrayList<>();
+        availabilities.add(LocalDateTime.now().plusDays(1));
+        availableRecruiter.setAvailabilities(availabilities);
+        availableRecruiter.setId("132");
+        availableRecruiter.setFirstName("Thomas");
+        availableRecruiter.setLastName("DUPONT");
+
+        return availableRecruiter;
     }
 
     private ArrayList<RecruiterData> getAvailableRecruiters() {
