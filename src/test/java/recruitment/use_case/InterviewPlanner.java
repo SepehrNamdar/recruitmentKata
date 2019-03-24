@@ -14,8 +14,8 @@ class InterviewPlanner {
     }
 
     PlannerResponse scheduleInterview(PlannerRequest request) {
-        candidates.findCandidateById(request.getCandidateId());
-        interview.plan();
+        CandidateData javaCandidate = candidates.findCandidateById(request.getCandidateId());
+        interview.plan(javaCandidate);
         return null;
     }
 }
