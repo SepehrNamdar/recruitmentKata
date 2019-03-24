@@ -5,6 +5,8 @@ import java.util.List;
 
 public class RecruiterData {
     private List<LocalDateTime> availabilities;
+    private String firstName;
+    private String lastName;
 
     public List<LocalDateTime> getAvailabilities() {
         return availabilities;
@@ -18,11 +20,15 @@ public class RecruiterData {
 
     }
 
-    public void setFirstName(String thomas) {
-
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setLastName(String dupont) {
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
+    public String getName() {
+        return firstName + " " + lastName;
     }
 }

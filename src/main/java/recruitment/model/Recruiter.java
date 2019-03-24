@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 class Recruiter {
-    void findAvailable(List<RecruiterData> recruiters, LocalDateTime requestedDate) {
+    List<RecruiterData> findAvailable(List<RecruiterData> recruiters, LocalDateTime requestedDate) {
         if(recruiters.isEmpty()) {
             throw new AnyRecruiterAvailableException();
         }
@@ -16,8 +16,6 @@ class Recruiter {
                 .filter(recruiterData -> recruiterData.getAvailabilities().contains(requestedDate))
                 .collect(Collectors.toList());
 
-        if(availableRecruiters.isEmpty()) {
-            throw new AnyRecruiterAvailableException();
-        }
+        return availableRecruiters;
     }
 }

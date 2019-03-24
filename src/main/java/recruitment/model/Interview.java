@@ -6,19 +6,24 @@ import recruitment.use_case.RecruiterData;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public class Interview {
     private String status = "unscheduled";
-    private String recruiter;
+    private String recruiterName;
 
     public void plan(
             LocalDateTime requestedDate, CandidateData javaCandidate, List<RecruiterData> recruiters) {
 
         Recruiter recruiter = new Recruiter();
-        recruiter.findAvailable(recruiters, requestedDate);
+        List<RecruiterData> availableRecruiters = recruiter.findAvailable(recruiters, requestedDate);
+        if(availableRecruiters.isEmpty()) {
+            throw new AnyRecruiterAvailableException();
+        }
+        Optional<RecruiterData> firstAvailableRecruiter = availableRecruiters.stream().findFirst();
+        recruiterName = firstAvailableRecruiter.get().getName();
 
         status = "scheduled";
-        this.recruiter = "Thomas DUPONT";
     }
 
     public String getStatus() {
@@ -34,7 +39,7 @@ public class Interview {
     }
 
     public String getRecruiterName() {
-        return recruiter;
+        return recruiterName;
     }
 
 }

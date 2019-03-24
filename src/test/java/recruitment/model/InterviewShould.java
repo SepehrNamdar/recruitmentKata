@@ -3,24 +3,34 @@ package recruitment.model;
 import common.DateUtils;
 import org.junit.jupiter.api.Test;
 import recruitment.use_case.CandidateData;
-import recruitment.use_case.RecruiterData;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class InterviewShould {
 
+    private static final LocalDateTime TODAY = DateUtils.TODAY;
+
     @Test
     void find_an_available_recruiter() {
         Interview interview = new Interview();
 
-        interview.plan(DateUtils.TODAY, new CandidateData(), getAvailableRecruiters());
+        interview.plan(
+                TODAY, new CandidateData(), InterviewDataFactory.getAvailableRecruiters());
 
-        assertThat(interview.getRecruiterName()).isEqualTo("Thomas DUPONT");
+        assertThat(interview.getRecruiterName()).isEqualTo("Antoine LEPERSE");
+    }
+
+    @Test
+    void find_an_available_recruiter_between_many_recruiters() {
+        Interview interview = new Interview();
+
+        interview.plan(TODAY, new CandidateData(), InterviewDataFactory.getRecruiters());
+
+        assertThat(interview.getRecruiterName()).isEqualTo("Antoine LEPERSE");
     }
 
     @Test
@@ -28,9 +38,8 @@ class InterviewShould {
         Interview interview = new Interview();
 
         assertThatExceptionOfType(AnyRecruiterAvailableException.class)
-                .isThrownBy(() -> {
-                    interview.plan(DateUtils.TODAY, new CandidateData(), new ArrayList<>());
-                });
+                .isThrownBy(() ->
+                        interview.plan(TODAY, new CandidateData(), new ArrayList<>()));
     }
 
     @Test
@@ -38,51 +47,9 @@ class InterviewShould {
         Interview interview = new Interview();
 
         assertThatExceptionOfType(AnyRecruiterAvailableException.class)
-                .isThrownBy(() -> {
-                    interview.plan(DateUtils.TODAY, new CandidateData(), getUnavailableRecruiters());
-                });
-    }
-
-    private List<RecruiterData> getUnavailableRecruiters() {
-        ArrayList<RecruiterData> recruiters = new ArrayList<>();
-
-        recruiters.add(anUnavailableRecruiter());
-
-        return recruiters;
-    }
-
-    private RecruiterData anUnavailableRecruiter() {
-        RecruiterData availableRecruiter = new RecruiterData();
-
-        List<LocalDateTime> availabilities = new ArrayList<>();
-        availabilities.add(LocalDateTime.now().plusDays(1));
-        availableRecruiter.setAvailabilities(availabilities);
-        availableRecruiter.setId("132");
-        availableRecruiter.setFirstName("Thomas");
-        availableRecruiter.setLastName("DUPONT");
-
-        return availableRecruiter;
-    }
-
-    private ArrayList<RecruiterData> getAvailableRecruiters() {
-        ArrayList<RecruiterData> recruiters = new ArrayList<>();
-
-        recruiters.add(anAvailableRecruiter());
-
-        return recruiters;
-    }
-
-    private RecruiterData anAvailableRecruiter() {
-        RecruiterData availableRecruiter = new RecruiterData();
-
-        List<LocalDateTime> availabilities = new ArrayList<>();
-        availabilities.add(DateUtils.TODAY);
-        availableRecruiter.setAvailabilities(availabilities);
-        availableRecruiter.setId("132");
-        availableRecruiter.setFirstName("Thomas");
-        availableRecruiter.setLastName("DUPONT");
-
-        return availableRecruiter;
+                .isThrownBy(() ->
+                        interview.plan(
+                                TODAY, new CandidateData(), InterviewDataFactory.getUnavailableRecruiters()));
     }
 
 }
