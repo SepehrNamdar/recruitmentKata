@@ -11,14 +11,14 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RecruitmentPlannerIT {
+class RecruitmentPlannerIT {
 
     private static final LocalDateTime TODAY = DateUtils.TODAY;
     private static final String RECRUITER = "Sepehr NAMDAR";
     private static final String CANDIDATE = "Ali DUPONT";
 
     @Test
-    public void should_plan_an_interview() {
+    void should_plan_an_interview() {
         RecruitmentPlanner planner = new RecruitmentPlannerImpl();
         PlannerRequest request = newRequest();
 

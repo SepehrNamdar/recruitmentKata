@@ -5,9 +5,9 @@ import java.util.UUID;
 
 public class PlannerRequest {
 
-    LocalDateTime date;
+    private LocalDateTime date;
 
-    UUID candidateId;
+    private UUID candidateId;
 
     public LocalDateTime getDate() {
         return date;
