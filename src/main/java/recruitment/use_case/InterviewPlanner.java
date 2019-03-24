@@ -27,6 +27,7 @@ class InterviewPlanner {
         interview.plan(request.getDate(), javaCandidate, recruiters);
         PlannerResponse response = new PlannerResponse();
         response.setDate(interview.getDate().format(DateUtils.FORMATTER));
+        response.setRecruiter(interview.getRecruiterName());
         return response;
     }
 }

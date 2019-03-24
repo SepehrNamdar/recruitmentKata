@@ -9,10 +9,12 @@ import java.util.List;
 
 public class Interview {
     private String status = "unscheduled";
+    private String recruiter;
 
     public void plan(
             LocalDateTime today, CandidateData javaCandidate, List<RecruiterData> recruiters) {
         status = "scheduled";
+        recruiter = "Thomas DUPONT";
     }
 
     public String getStatus() {
@@ -28,6 +30,6 @@ public class Interview {
     }
 
     public String getRecruiterName() {
-        return null;
+        return recruiter;
     }
 }

@@ -1,7 +1,6 @@
 package recruitment.use_case;
 
 import common.DateUtils;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -45,6 +44,10 @@ class InterviewPlannerShould {
 
     private List<RecruiterData> getRecruiters() {
         List<RecruiterData> recruiters = new ArrayList<>();
+        RecruiterData thomas = new RecruiterData();
+        thomas.setFirstName("Thomas");
+        thomas.setLastName("DUPONT");
+        recruiters.add(thomas);
         when(recruitersReferential.findCurrentMonthRecruiters()).thenReturn(recruiters);
         return recruiters;
     }
