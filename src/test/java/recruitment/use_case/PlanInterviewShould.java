@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import recruitment.exposition.PlannerRequest;
 import recruitment.model.Interview;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -15,7 +16,6 @@ class PlanInterviewShould {
     private CandidateRepository candidateRepository;
     private RecruitersReferential recruitersReferential;
     private PlannerRequest request;
-    private PlanInterview planInterview;
     private Interview interview;
     private InterviewRepository interviewrepository;
 
@@ -27,41 +27,33 @@ class PlanInterviewShould {
         interviewrepository = mock(InterviewRepository.class);
 
         request = new PlannerRequest();
-        planInterview = new PlanInterview(candidateRepository, recruitersReferential, interviewrepository);
+        PlanInterview planInterview = new PlanInterview(candidateRepository, recruitersReferential, interviewrepository);
+
+        planInterview.plan(request, interview);
     }
 
     @Test
     void call_candidate_repository_to_find_candidate_by_candidate_id() {
-        planInterview.plan(request, interview);
-
         verify(candidateRepository).getCandidateById(request.getCandidateId());
     }
 
     @Test
     void call_recruiter_referential_to_find_recruiters_list() {
-        planInterview.plan(request, interview);
-
         verify(recruitersReferential).getRecruitersOfTheMonth();
     }
 
     @Test
     void call_interview_aggregate() {
-        planInterview.plan(request, interview);
-
         verify(interview).plan();
     }
 
     @Test
     void call_interview_repository_to_add_new_interview() {
-        planInterview.plan(request, interview);
-
         verify(interviewrepository).add(interview);
     }
 
     @Test
     void return_a_scheduled_interview_when_interview_planned() {
-        planInterview.plan(request, interview);
-
-        Assertions.assertThat(interview.getStatus()).isEqualTo("scheduled");
+         assertThat(interview.getStatus()).isEqualTo("scheduled");
     }
 }
