@@ -34,11 +34,13 @@ class InterviewPlannerShould {
 
         InterviewPlanner planner = new InterviewPlanner(interview, candidates, recruitersReferential);
         assertThat(interview.getStatus()).isEqualTo("unscheduled");
-        PlannerResponse plannerResponse = planner.scheduleInterview(request);
+        PlannerResponse response = planner.scheduleInterview(request);
 
         verify(interview).plan(TODAY, javaCandidate, recruiters);
         assertThat(interview.getStatus()).isEqualTo("scheduled");
-        assertThat(plannerResponse.getDate()).isEqualTo(DateUtils.TODAY_FORMATTED);
+        assertThat(response.getDate()).isEqualTo(interview.getDate().format(DateUtils.FORMATTER));
+        assertThat(response.getCandidate()).isEqualTo(interview.getCandidateName());
+        assertThat(response.getRecruiter()).isEqualTo(interview.getRecruiterName());
     }
 
     private List<RecruiterData> getRecruiters() {

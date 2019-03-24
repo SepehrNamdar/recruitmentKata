@@ -22,4 +22,12 @@ public class Interview {
     public LocalDateTime getDate() {
         return DateUtils.TODAY;
     }
+
+    public String getCandidateName() {
+        return null;
+    }
+
+    public String getRecruiterName() {
+        return null;
+    }
 }

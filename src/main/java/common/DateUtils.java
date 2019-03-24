@@ -11,5 +11,4 @@ public class DateUtils {
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DateUtils.YYYY_MM_DD);
 
-    public static final String TODAY_FORMATTED = TODAY.format(FORMATTER);
 }
