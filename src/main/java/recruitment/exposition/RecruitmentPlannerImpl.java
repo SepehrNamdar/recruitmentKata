@@ -13,11 +13,9 @@ import java.time.format.DateTimeParseException;
 public class RecruitmentPlannerImpl implements RecruitmentPlanner {
 
     private PlanInterview planInterview;
-    private Interview interview;
 
-    public RecruitmentPlannerImpl(PlanInterview planInterview, Interview interview) {
+    public RecruitmentPlannerImpl(PlanInterview planInterview) {
         this.planInterview = planInterview;
-        this.interview = interview;
     }
 
     @Override
@@ -25,7 +23,7 @@ public class RecruitmentPlannerImpl implements RecruitmentPlanner {
         validateRequestParams(interviewRequest);
         validateInterviewDateFormat(interviewRequest);
 
-        planInterview.plan(interviewRequest, interview);
+        planInterview.plan(interviewRequest);
 
         return new PlannerResponse();
     }

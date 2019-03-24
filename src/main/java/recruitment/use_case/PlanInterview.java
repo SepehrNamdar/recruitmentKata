@@ -18,10 +18,11 @@ public class PlanInterview {
         this.interviewRepository = interviewRepository;
     }
 
-    public void plan(PlannerRequest request, Interview interview) {
+    public void plan(PlannerRequest request) {
         candidateRepository.getCandidateById(request.getCandidateId());
         recruitersReferential.getRecruitersOfTheMonth();
 
+        Interview interview = new Interview();
         interview.plan();
 
         interviewRepository.add(interview);

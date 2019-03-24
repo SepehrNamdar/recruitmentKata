@@ -27,7 +27,7 @@ class PlannerShould {
     void init() {
         planInterview = mock(PlanInterview.class);
         interview = new Interview();
-        planner = new RecruitmentPlannerImpl(planInterview, interview);
+        planner = new RecruitmentPlannerImpl(planInterview);
         interviewRequest = new PlannerRequest();
     }
 
@@ -73,6 +73,6 @@ class PlannerShould {
 
         planner.plan(interviewRequest);
 
-        verify(planInterview).plan(interviewRequest, interview);
+        verify(planInterview).plan(interviewRequest);
     }
 }
