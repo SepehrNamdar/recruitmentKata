@@ -1,6 +1,7 @@
 package recruitment.model;
 
 import common.DateUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import recruitment.use_case.CandidateData;
 
@@ -14,10 +15,15 @@ class InterviewShould {
 
     private static final LocalDateTime TODAY = DateUtils.TODAY;
 
+    private Interview interview;
+
+    @BeforeEach
+    void init() {
+        interview = new Interview();
+    }
+
     @Test
     void find_an_available_recruiter() {
-        Interview interview = new Interview();
-
         interview.plan(
                 TODAY, new CandidateData(), InterviewDataFactory.getAvailableRecruiters());
 
@@ -26,8 +32,6 @@ class InterviewShould {
 
     @Test
     void find_an_available_recruiter_between_many_recruiters() {
-        Interview interview = new Interview();
-
         interview.plan(TODAY, new CandidateData(), InterviewDataFactory.getRecruiters());
 
         assertThat(interview.getRecruiterName()).isEqualTo("Antoine LEPERSE");
@@ -35,8 +39,6 @@ class InterviewShould {
 
     @Test
     void throw_an_exception_when_any_available_recruiter_in_this_month() {
-        Interview interview = new Interview();
-
         assertThatExceptionOfType(AnyRecruiterAvailableException.class)
                 .isThrownBy(() ->
                         interview.plan(TODAY, new CandidateData(), new ArrayList<>()));
@@ -44,8 +46,6 @@ class InterviewShould {
 
     @Test
     void throw_an_exception_when_any_available_recruiter_for_requested_date() {
-        Interview interview = new Interview();
-
         assertThatExceptionOfType(AnyRecruiterAvailableException.class)
                 .isThrownBy(() ->
                         interview.plan(

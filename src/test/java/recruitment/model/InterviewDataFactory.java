@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InterviewDataFactory {
+class InterviewDataFactory {
 
-    public static List<RecruiterData> getRecruiters() {
+    static List<RecruiterData> getRecruiters() {
         ArrayList<RecruiterData> recruiters = new ArrayList<>();
 
         recruiters.addAll(getUnavailableRecruiters());
@@ -18,7 +18,7 @@ public class InterviewDataFactory {
         return recruiters;
     }
 
-    public static List<RecruiterData> getUnavailableRecruiters() {
+    static List<RecruiterData> getUnavailableRecruiters() {
         ArrayList<RecruiterData> recruiters = new ArrayList<>();
 
         recruiters.add(anUnavailableRecruiter());
@@ -39,7 +39,7 @@ public class InterviewDataFactory {
         return availableRecruiter;
     }
 
-    public static ArrayList<RecruiterData> getAvailableRecruiters() {
+    static ArrayList<RecruiterData> getAvailableRecruiters() {
         ArrayList<RecruiterData> recruiters = new ArrayList<>();
 
         recruiters.add(firstAvailableRecruiter());

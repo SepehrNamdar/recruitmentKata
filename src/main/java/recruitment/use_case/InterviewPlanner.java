@@ -24,7 +24,9 @@ class InterviewPlanner {
     PlannerResponse scheduleInterview(PlannerRequest request) {
         CandidateData javaCandidate = candidates.findCandidateById(request.getCandidateId());
         List<RecruiterData> recruiters = recruitersReferential.findCurrentMonthRecruiters();
+
         interview.plan(request.getDate(), javaCandidate, recruiters);
+
         PlannerResponse response = new PlannerResponse();
         response.setDate(interview.getDate().format(DateUtils.FORMATTER));
         response.setRecruiter(interview.getRecruiterName());

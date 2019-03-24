@@ -12,10 +12,8 @@ class Recruiter {
             throw new AnyRecruiterAvailableException();
         }
 
-        List<RecruiterData> availableRecruiters = recruiters.stream()
+        return recruiters.stream()
                 .filter(recruiterData -> recruiterData.getAvailabilities().contains(requestedDate))
                 .collect(Collectors.toList());
-
-        return availableRecruiters;
     }
 }
