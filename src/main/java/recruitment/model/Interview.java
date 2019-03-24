@@ -13,8 +13,13 @@ public class Interview {
 
     public void plan(
             LocalDateTime today, CandidateData javaCandidate, List<RecruiterData> recruiters) {
+        if(recruiters.isEmpty()) {
+            throw new AnyRecruiterAvilableException();
+        }
+
         status = "scheduled";
         recruiter = "Thomas DUPONT";
+
     }
 
     public String getStatus() {
