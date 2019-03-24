@@ -4,14 +4,17 @@ import recruitment.exposition.PlannerRequest;
 import recruitment.exposition.PlannerResponse;
 import recruitment.model.Interview;
 
-public class InterviewPlanner {
+class InterviewPlanner {
     private Interview interview;
+    private CandidateRepository candidates;
 
-    public InterviewPlanner(Interview interview) {
+    InterviewPlanner(Interview interview, CandidateRepository candidates) {
         this.interview = interview;
+        this.candidates = candidates;
     }
 
-    public PlannerResponse scheduleInterview(PlannerRequest request) {
+    PlannerResponse scheduleInterview(PlannerRequest request) {
+        candidates.findCandidateById(request.getCandidateId());
         interview.plan();
         return null;
     }
