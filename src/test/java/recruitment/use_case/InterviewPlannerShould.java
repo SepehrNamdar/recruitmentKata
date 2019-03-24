@@ -1,18 +1,21 @@
 package recruitment.use_case;
 
 import common.DateUtils;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import recruitment.exposition.PlannerRequest;
+import recruitment.exposition.PlannerResponse;
 import recruitment.model.Interview;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,9 +33,12 @@ class InterviewPlannerShould {
         List<RecruiterData> recruiters = getRecruiters();
 
         InterviewPlanner planner = new InterviewPlanner(interview, candidates, recruitersReferential);
-        planner.scheduleInterview(request);
+        assertThat(interview.getStatus()).isEqualTo("unscheduled");
+        PlannerResponse plannerResponse = planner.scheduleInterview(request);
 
         verify(interview).plan(TODAY, javaCandidate, recruiters);
+        assertThat(interview.getStatus()).isEqualTo("scheduled");
+        assertThat(plannerResponse.getDate()).isEqualTo(DateUtils.TODAY_FORMATTED);
     }
 
     private List<RecruiterData> getRecruiters() {

@@ -1,5 +1,6 @@
 package recruitment.use_case;
 
+import common.DateUtils;
 import recruitment.exposition.PlannerRequest;
 import recruitment.exposition.PlannerResponse;
 import recruitment.model.Interview;
@@ -24,6 +25,8 @@ class InterviewPlanner {
         CandidateData javaCandidate = candidates.findCandidateById(request.getCandidateId());
         List<RecruiterData> recruiters = recruitersReferential.findCurrentMonthRecruiters();
         interview.plan(request.getDate(), javaCandidate, recruiters);
-        return null;
+        PlannerResponse response = new PlannerResponse();
+        response.setDate(interview.getDate().format(DateUtils.FORMATTER));
+        return response;
     }
 }
