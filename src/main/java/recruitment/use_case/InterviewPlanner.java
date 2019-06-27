@@ -24,10 +24,10 @@ class InterviewPlanner {
     }
 
     PlannerResponse scheduleInterview(PlannerRequest request) {
-        CandidateData javaCandidate = candidates.findCandidateById(request.getCandidateId());
+        CandidateData candidate = candidates.findCandidateById(request.getCandidateId());
         List<RecruiterData> recruiters = recruitersReferential.findCurrentMonthRecruiters();
 
-        interview.plan(request.getDate(), javaCandidate, recruiters);
+        interview.plan(request.getDate(), candidate, recruiters);
 
         PlannerResponse response = new PlannerResponse();
         response.setDate(interview.getDate().format(DateUtils.FORMATTER));
