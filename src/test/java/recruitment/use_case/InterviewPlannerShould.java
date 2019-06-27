@@ -1,6 +1,8 @@
 package recruitment.use_case;
 
 import common.DateUtils;
+import common.dto.CandidateData;
+import common.dto.RecruiterData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

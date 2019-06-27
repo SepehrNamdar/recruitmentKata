@@ -3,7 +3,7 @@ package recruitment.model;
 import common.DateUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import recruitment.use_case.CandidateData;
+import common.dto.CandidateData;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

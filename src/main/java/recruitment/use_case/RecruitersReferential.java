@@ -1,9 +1,9 @@
 package recruitment.use_case;
 
+import common.dto.RecruiterData;
+
 import java.util.List;
 
-class RecruitersReferential {
-    List<RecruiterData> findCurrentMonthRecruiters() {
-        return null;
-    }
+interface RecruitersReferential {
+    List<RecruiterData> findCurrentMonthRecruiters();
 }

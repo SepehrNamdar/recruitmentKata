@@ -1,6 +1,8 @@
 package recruitment.use_case;
 
 import common.DateUtils;
+import common.dto.CandidateData;
+import common.dto.RecruiterData;
 import recruitment.exposition.PlannerRequest;
 import recruitment.exposition.PlannerResponse;
 import recruitment.model.Interview;

@@ -1,9 +1,9 @@
 package recruitment.use_case;
 
+import common.dto.CandidateData;
+
 import java.util.UUID;
 
-class CandidateRepository {
-    CandidateData findCandidateById(UUID candidateId) {
-        return null;
-    }
+interface CandidateRepository {
+    CandidateData findCandidateById(UUID candidateId);
 }

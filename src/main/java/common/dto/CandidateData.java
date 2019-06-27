@@ -1,4 +1,4 @@
-package recruitment.use_case;
+package common.dto;
 
 public class CandidateData {
     public String getLastName() {
