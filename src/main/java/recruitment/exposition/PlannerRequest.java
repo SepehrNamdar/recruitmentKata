@@ -5,23 +5,19 @@ import java.util.UUID;
 
 public class PlannerRequest {
 
-    LocalDateTime date;
-
     UUID candidateId;
+    LocalDateTime today;
 
-    public LocalDateTime getDate() {
-        return date;
+    public PlannerRequest(UUID candidateId, LocalDateTime date) {
+        this.candidateId = candidateId;
+        this.today = date;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public LocalDateTime getDate() {
+        return today;
     }
 
     public UUID getCandidateId() {
         return candidateId;
-    }
-
-    public void setCandidateId(UUID candidateId) {
-        this.candidateId = candidateId;
     }
 }
